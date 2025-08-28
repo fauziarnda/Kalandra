@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
-export function LoginForm({
+export function RegisterForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<'form'>) {
@@ -11,11 +11,39 @@ export function LoginForm({
     <form className={cn('flex flex-col gap-5', className)} {...props}>
       <div className="flex flex-col gap-2 ">
         <h1 className="text-5xl font-bold text-brand-primary leading-normal">
-          Login{' '}
+          Register{' '}
         </h1>
       </div>
       <div className="grid gap-12">
         <div className="grid gap-5">
+          <div className="grid gap-2">
+            <Label
+              className="text-brand-black text-base font-semibold leading-none"
+              htmlFor="email"
+            >
+              Name
+            </Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="m@example.com"
+              required
+            />
+          </div>
+          <div className="grid gap-2">
+            <Label
+              className="text-brand-black text-base font-semibold leading-none"
+              htmlFor="email"
+            >
+              Username
+            </Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="m@example.com"
+              required
+            />
+          </div>
           <div className="grid gap-2">
             <Label
               className="text-brand-black text-base font-semibold leading-none"
@@ -38,12 +66,6 @@ export function LoginForm({
               >
                 Password
               </Label>
-              <a
-                href="#"
-                className="ml-auto text-sm font-light underline-offset-4 hover:underline leading-none"
-              >
-                Forgot your password?
-              </a>
             </div>
             <Input id="password" type="password" required />
           </div>
@@ -68,14 +90,14 @@ export function LoginForm({
                 fill="currentColor"
               />
             </svg>
-            Login with GitHub
+            Register with GitHub
           </Button>
         </div>
       </div>
       <div className="text-center text-sm">
-        Don&apos;t have an account?{' '}
-        <a href="/register" className="underline underline-offset-4">
-          Sign up
+        Already have an account?{' '}
+        <a href="/login" className="underline underline-offset-4">
+          Login
         </a>
       </div>
     </form>
