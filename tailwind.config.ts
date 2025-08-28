@@ -23,6 +23,7 @@ const config: Config = {
           yellow: 'hsl(var(--brand-accent))', // #F29D35
           brown: 'hsl(var(--brand-brown))', // #7B4F28
           black: 'hsl(var(--brand-dark))', // #0F0F0F
+          coolgrey: 'hsl(var(--brand-coolgrey))', // #D1D5DB
         },
         card: {
           DEFAULT: 'hsl(var(--card))',
@@ -62,11 +63,6 @@ const config: Config = {
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))',
         },
-      },
-      borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
       },
     },
   },
