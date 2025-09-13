@@ -35,7 +35,7 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
-    --sidebar-background: 0 0% 98%;
+    --sidebar-background: 146 62% 22%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
     --sidebar-primary-foreground: 0 0% 98%;
@@ -87,4 +87,34 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* src/app/globals.css atau styles/globals.css */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+::-webkit-scrollbar {
+  width: 6px; /* tipis */
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* hilangkan background track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2); /* abu tipis */
+  border-radius: 9999px; /* rounded full */
+}
+
+/* untuk Firefox */
+* {
+  scrollbar-width: thin; /* tipis */
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }

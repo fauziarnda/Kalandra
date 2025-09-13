@@ -25,7 +25,7 @@ export default function TodoCard() {
       status: 'Ladang Kentang 1',
     },
     {
-      id: 'ladang-4',
+      id: 'ladang-5',
       name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       status: 'Ladang Kentang 1',
     },
@@ -49,7 +49,7 @@ export default function TodoCard() {
                 <Label htmlFor={item.id} className="flex flex-col gap-[10px]">
                   <span className="font-normal text-sm">{item.name}</span>
                   <span
-                    className={`text-[10px] px-2 py-1 text-white w-fit rounded-md ${
+                    className={`text-xs px-2 py-1 text-white w-fit rounded-md ${
                       item.status === 'Ladang Kentang 1'
                         ? 'bg-brand-primary'
                         : item.status === 'Ladang Kentang 2'

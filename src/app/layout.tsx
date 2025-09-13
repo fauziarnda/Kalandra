@@ -19,7 +19,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased`}>
+      {/* --- INI BAGIAN YANG DIPERBAIKI --- */}
+      {/* Tambahkan ${inter.className} untuk menerapkan font secara langsung */}
+      <body
+        className={`${inter.variable} ${inter.className} font-sans antialiased`}
+      >
         {children}
       </body>
     </html>

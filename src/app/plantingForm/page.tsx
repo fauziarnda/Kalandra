@@ -1,5 +1,12 @@
 'use client';
-
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+} from '@/components/ui/alert-dialog';
+import { CheckCircle } from 'lucide-react';
 import SidebarLayout from '@/components/layout/SidebarLayout';
 import { Button } from '@/components/ui/button';
 import {
@@ -12,13 +19,45 @@ import {
 } from '@/components/ui/card';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import { Bell } from 'lucide-react';
-import React from 'react';
+import React, { useState } from 'react';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
-export default function Dashboard() {
-  const [date, setDate] = React.useState<Date | undefined>(
-    new Date(2025, 5, 12)
-  );
+// import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
+export default function PlantingForm() {
+  const router = useRouter();
+  const [open, setOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    namaLadang: '',
+    jenisTanaman: '',
+    tanggalTanam: '',
+    luasLahan: '',
+    catatan: '',
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form Data', formData);
+
+    const isSuccess = true;
+    if (isSuccess) {
+      setOpen(true);
+
+      setFormData({
+        namaLadang: '',
+        jenisTanaman: '',
+        tanggalTanam: '',
+        luasLahan: '',
+        catatan: '',
+      });
+
+      setTimeout(() => {
+        setOpen(false);
+        router.push('/dashboard');
+      }, 4000);
+    }
+  };
+
   return (
     <SidebarLayout>
       <div className="flex flex-col p-[39px] gap-5 min-h-screen overflow-hidden">
@@ -47,7 +86,7 @@ export default function Dashboard() {
           </CardHeader>
 
           <CardContent className="p-0">
-            <form className="flex flex-col gap-5">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               <div className="grid gap-2">
                 <Label
                   className="text-brand-black text-base font-semibold leading-none p-0"
@@ -55,7 +94,16 @@ export default function Dashboard() {
                 >
                   Nama Ladang
                 </Label>
-                <Input type="text" placeholder="" required />
+                <Input
+                  id="nama"
+                  type="text"
+                  placeholder="Masukkan nama lahan"
+                  required
+                  value={formData.namaLadang}
+                  onChange={(e) =>
+                    setFormData({ ...formData, namaLadang: e.target.value })
+                  }
+                />
               </div>
               <div className="grid gap-2">
                 <Label
@@ -64,7 +112,16 @@ export default function Dashboard() {
                 >
                   Jenis Tanaman
                 </Label>
-                <Input type="text" placeholder="" required />
+                <Input
+                  id="jenis"
+                  type="text"
+                  placeholder="Masukkan jenis tanaman"
+                  required
+                  value={formData.jenisTanaman}
+                  onChange={(e) =>
+                    setFormData({ ...formData, jenisTanaman: e.target.value })
+                  }
+                />
               </div>
               <div className="grid gap-2">
                 <Label
@@ -73,7 +130,15 @@ export default function Dashboard() {
                 >
                   Tanggal Tanam
                 </Label>
-                <Input type="date" placeholder="" required />
+                <Input
+                  id="tanggal"
+                  type="date"
+                  required
+                  value={formData.tanggalTanam}
+                  onChange={(e) =>
+                    setFormData({ ...formData, tanggalTanam: e.target.value })
+                  }
+                />
               </div>
               <div className="grid gap-2">
                 <Label
@@ -82,7 +147,16 @@ export default function Dashboard() {
                 >
                   Luas Lahan
                 </Label>
-                <Input type="text" placeholder="" required />
+                <Input
+                  id="luas"
+                  type="text"
+                  required
+                  placeholder="XX m2"
+                  value={formData.luasLahan}
+                  onChange={(e) =>
+                    setFormData({ ...formData, luasLahan: e.target.value })
+                  }
+                />
               </div>
               <div className="grid gap-2">
                 <Label
@@ -92,18 +166,46 @@ export default function Dashboard() {
                   Catatan
                 </Label>
                 <textarea
-                  id="textarea"
+                  id="catatan"
                   placeholder="Tulis catatan di sini..."
-                  required
                   className="border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-yellow min-h-[100px]"
+                  value={formData.catatan}
+                  onChange={(e) =>
+                    setFormData({ ...formData, catatan: e.target.value })
+                  }
                 />
               </div>
+              <CardFooter className="p-0 flex justify-end">
+                <Button size="lg" type="submit">
+                  Submit
+                </Button>
+              </CardFooter>
             </form>
           </CardContent>
-          <CardFooter className="p-0 flex justify-end">
-            <Button size="lg">Submit</Button>
-          </CardFooter>
         </Card>
+
+        <AlertDialog open={open} onOpenChange={setOpen}>
+          <AlertDialogContent className="">
+            <div className="flex flex-col gap-2">
+              <div className="flex flex-row gap-2 items-center ">
+                <CheckCircle className="text-brand-primary w-6 h-6" />
+                <h4 className="text-2xl font-bold text-brand-primary">
+                  Success
+                </h4>
+              </div>
+              <p className="text-base font-regular text-brand-blackd">
+                Form telah berhasil di submit
+              </p>
+            </div>
+
+            <AlertDialogHeader className="gap-0"></AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogAction onClick={() => setOpen(false)}>
+                OK
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     </SidebarLayout>
   );
