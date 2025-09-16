@@ -15,7 +15,7 @@ import React from 'react';
 import { Label } from '@/components/ui/label';
 import { Calendar } from '@/components/ui/calendar';
 
-export default function PlantingForm() {
+export default function FieldDetail() {
   const [date, setDate] = React.useState<Date | undefined>(
     new Date(2025, 5, 12)
   );
